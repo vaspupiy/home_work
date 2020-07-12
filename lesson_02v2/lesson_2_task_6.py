@@ -14,8 +14,34 @@ number = 0
 # ]
 # number = 3
 
+n_inp = int(input("Укажите количество товара, для котрого будут введены параметры: "))
+for i in range(n_inp):
+    d_param = dict()
+    s_inp = input("Введите через пробел:\n'название товара' 'цену товара' "
+                  "'количество товара' 'единицу измерения':\n ").split()
+    if not (''.join(s_inp[1].split('.', 1)).isdigit() and ''.join(s_inp[2].split('.', 1)).isdigit()):
+        print("\nОшибка ввода данных! Данные в базу не введины!\n"
+              "Значения данных 'цена' и 'количество' не могут быть отрицательными и должны указываться цыфрами.\n"
+              "Пример корректного ввода:\n [мука 45.5 75.5 кг.]\n"
+              f"Ваш ввод:\n {' '.join(s_inp)}\n"
+              "Позже, Вы сможете ввести эти значения по отдельности.\n")
+        continue
+    else:
+        for ind, key in enumerate(characteristics):
+            d_param[key[0]] = (s_inp[ind].lower() if ind not in [1, 2] else float(s_inp[ind]))
+        if input("\nПроверьте введенные вами данные: \n"
+                 f"{d_param}\n"
+                 " Если все правильно, введите 'да': ").lower() != "да":
+            print("\nВвод отменен пользователем.\n"
+                  "Позже, Вы сможете ввести эти значения по отдельности.\n")
+            continue
+    number += 1
+    item_t = (number, d_param)
+    struct_data.append(item_t)
+    print()
+
 while True:
-    if input("Для начала ввода данных введите 'да'. Желаете ввести данные?: ").lower() != "да":
+    if input("Для начала ввода данных введите 'да'. Желаете ввести данные по отдельности?: ").lower() != "да":
         break
     d_param = dict()
     for i in characteristics:
