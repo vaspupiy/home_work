@@ -68,6 +68,7 @@ while True:
 
 analytic = {'название': [], 'цена': [], 'количество': [], 'eд.': []}
 if struct_data:
+    print(f'\nСтруктура данных «Товары»: {struct_data}')
     for key in analytic:
         for i in struct_data:
             analytic[key].append(i[1][key])
