@@ -1,7 +1,6 @@
 def my_div(dividend, divider):
     """
     Функция выполняет деление двух чисел и возвращает результат деления.
-
     :param dividend: делимое
     :param divider: делитель
     :return: результат деления
