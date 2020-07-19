@@ -15,4 +15,3 @@ try:
         print(i)
 except ValueError:
     print("Ошибка ввода. Ожидается ввод целых чисел")
-    
