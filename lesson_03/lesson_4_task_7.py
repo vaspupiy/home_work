@@ -2,22 +2,23 @@ import math
 
 
 def fact(n):
-    if isinstance(n, int) and n >= 0:
-        for num in range(n + 1):
+    """Функция создает объект-генератор, выводит  первые n чисел, начиная с 1! и до n!"""
+    if isinstance(n, int) and n > 0:
+        for num in range(1, n + 1):
             yield math.factorial(num)
     else:
-        yield "Ошибка ввода. Необходимо вводить целое не отрицательное число."
+        yield "Ошибка ввода. Необходимо вводить целое число больще 0."
 
 
 def my_fact(n):
-    if isinstance(n, int) and n >= 0:
-        yield 1  # количество перестановок пустого множества равно единице
+    """Функция создает объект-генератор, выводит  первые n чисел, начиная с 1! и до n!"""
+    if isinstance(n, int) and n > 0:
         f = 1
         for num in range(1, n + 1):
             f *= num
             yield f
     else:
-        yield "Ошибка ввода. Необходимо вводить целое не отрицательное число."
+        yield "Ошибка ввода. Необходимо вводить целое  число больще 0."
 
 
 def test():
