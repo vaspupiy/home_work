@@ -8,6 +8,6 @@ try:
         text = [line.split() for line in file.readlines()]
         print(f'количество строк: {len(text)}')
         for num, line in enumerate(text, 1):
-            print(f'количества слов в {num} строке: {len(line)}')
+            print(f'количество слов в {num} строке: {len(line)}')
 except IOError:
     print("Произошла ошибка ввода-вывода!")
