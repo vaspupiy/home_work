@@ -18,9 +18,10 @@ class Position(Worker):
 
 employee = Position("Zigizmund", "Mucusev", "Killer", 25, 27)
 employee1 = Position("Avtandill", "Pertahiya", "Dealer", 253, 27)
+print()
 print(employee.get_full_name())
 print(employee.get_total_income())
+print()
 print(employee1.get_full_name())
 print(employee1.get_total_income())
-print(employee.get_full_name())
-print(employee.get_total_income())
+
