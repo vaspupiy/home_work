@@ -1,15 +1,37 @@
-import random
-print(random.seed(3))
+class Iterator:
+    """
+    Объект-итератор
+    """
+    def __init__(self, start=0):
+        self.i = start
+    # У итератора есть метод __next__
+
+    def __next__(self):
+        self.i += 1
+        if self.i <= 5:
+            return self.i
+        else:
+            raise StopIteration
 
 
-class Assign:
-    def __init__(self, value=0):
-        self.__value = value
+class IterObj:
+    """
+    Объект, поддерживающий интерфейс итерации (итерируемый объект)
+    """
+    def __init__(self, start=0):
+        self.start = start - 1
+
+    def __iter__(self):
+        # Метод __iter__ должен возвращать объект-итератор
+        return Iterator(self.start)
 
 
-obj1 = Assign(2)
-obj2 = Assign(2)
-print(id(obj1) == id(obj2), end =' ')
-str1 = 'Good'
-str2 = 'Good'
-print(id(str1) == id(str2))
+obj = IterObj(start=2)
+for el in obj:
+    print(el)
+
+
+print("Еще раз ...")
+for el in obj:
+    print(el)
+
