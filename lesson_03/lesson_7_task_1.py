@@ -40,3 +40,6 @@ print('\n5)')
 print(m4)
 print('\n6)')
 print(m4 + m3 + m2)
+
+print('\n1)')
+print(m2 + m1)

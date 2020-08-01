@@ -1,22 +1,22 @@
-class Iter:
-    def __init__(self, start=0):
-        self.i = start - 1
+class Dog:
+    """Dog model"""
 
-    # Метод __iter__ должен возвращать объект-итератор
-    def __iter__(self):
-        return self
+    def __init__(self, name, age):
+        """init name, age"""
+        self.name = name
+        self.age = age
 
-    def __next__(self):
-        self.i += 1
-        if self.i <= 5:
-            return self.i
-        else:
-            raise StopIteration
+    def sit(self):
+        """Dog sit for comand"""
+        print(self.name.title() + " is now sitting.")
 
-    def obj_it(self):
-        for el in self.i:
-           return  el
+    def roll_over(self):
+        """Dog roll over"""
+        print(self.name.title() + " rolled over!")
 
 
-obj = Iter(start=2)
-print(obj.obj_it)
+my_dog = Dog("Sinta", 6)
+print(my_dog.name.title())
+print(str(my_dog.age))
+my_dog.sit()
+my_dog.roll_over()

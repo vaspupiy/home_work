@@ -33,8 +33,8 @@ class Cell:
         return ord_str
 
 
-cell_1 = Cell(99)
-cell_2 = Cell(26)
+cell_1 = Cell(14)
+cell_2 = Cell(7)
 print(cell_1 / cell_2)
 print(cell_2 / cell_1)
 print(cell_1 * cell_2)
@@ -43,4 +43,4 @@ print(cell_1 + cell_2)
 print(cell_2 + cell_1)
 print(cell_1 - cell_2)
 print(cell_2 - cell_1)
-print(cell_2.make_order(12))
+print(cell_1.make_order(3))
