@@ -1,0 +1,184 @@
+class Matrix:
+    def __init__(self, matrix):
+        self.matrix = matrix
+
+    def __add__(self, other):
+        if len(self.matrix) == len(other.matrix) and len(self.matrix[0]) == len(other.matrix[0]):
+            return Matrix([[self.matrix[i][j] + other.matrix[i][j] for j in range(len(self.matrix[i]))] for i in
+                           range(len(self.matrix))])
+        else:
+            return "Ошибка операции: Сложение матриц выполнимо только для матриц одинаковой размерности"
+
+    def __str__(self):
+        try:
+            self.m_str = ''
+            for row in self.matrix:
+                for el in row:
+                    self.m_str += f'{el:4d}' + ' '
+                self.m_str += '\n'
+            self.m_str = self.m_str[:-2]
+            return self.m_str
+        except ValueError:
+            print("Не выводится сообщение, не понимаю почему")
+            return "Не выводится сообщение, не понимаю почему"
+
+
+m1 = Matrix([[1, 2], [2, 3], [3, 4], [1, 2]])
+m2 = Matrix([[1, 2], [2, 3], [3, 4]])
+m3 = Matrix([[1, 2], [2, 3], [3, 4]])
+m4 = m3 + m2
+
+print('\n1)')
+print(m2 + m3 + m1)
+print('\n2)')
+print(m1)
+print('\n3)')
+print(m2)
+print('\n4)')
+print(m3)
+print('\n5)')
+print(m4)
+print('\n6)')
+print(m4 + m3 + m2)
+
+print('\n1)')
+print(m2 + m1)
+ 39  lesson_03/lesson_7_task_2.py 
+Viewed
+@@ -0,0 +1,39 @@
+from abc import ABC, abstractmethod
+
+
+class Clothes(ABC):
+
+    @abstractmethod
+    def fabric_consumption(self):
+        """Определение расхода ткани"""
+
+
+class Coat(Clothes):
+
+    def __init__(self, v):
+        self.v = v
+
+    @property
+    def fabric_consumption(self):
+        return round(self.v / 6.5 + 0.5, 1)
+
+
+class Suit(Clothes):
+
+    def __init__(self, h):
+        self.h = h
+
+    @property
+    def fabric_consumption(self):
+        return self.h * 2 + 0.3
+
+
+cl1 = Coat(25)
+cl2 = Suit(3)
+cl3 = Suit(8)
+cl4 = Coat(30)
+print(cl1.v, cl1.fabric_consumption)
+print(cl2.h, cl2.fabric_consumption)
+print(cl3.h, cl3.fabric_consumption)
+print(cl4.v, cl4.fabric_consumption)
+print(cl1.fabric_consumption + cl2.fabric_consumption + cl3.fabric_consumption + cl4.fabric_consumption)
+ 46  lesson_03/lesson_7_task_3.py 
+Viewed
+@@ -0,0 +1,46 @@
+class Cell:
+    def __init__(self, n_cells):
+        self.n_cells = n_cells
+
+    def __add__(self, other):
+        return self.n_cells + other.n_cells
+
+    def __sub__(self, other):
+        if self.n_cells >= other.n_cells:
+            return self.n_cells - other.n_cells
+        return other.n_cells - self.n_cells
+
+    def __mul__(self, other):
+        return self.n_cells * other.n_cells
+
+    def __truediv__(self, other):
+        try:
+            return int(round(self.n_cells / other.n_cells, 0))
+        except ZeroDivisionError:
+            return "Значение количества клеток делителя должнно быть больше 0"
+
+    def make_order(self, row):
+        ord_str = ''
+        row_ = row
+        for i in range(self.n_cells):
+            if row_ > 0:
+                ord_str += '*'
+                row_ -= 1
+            else:
+                ord_str += '\n'
+                ord_str += '*'
+                row_ = row - 1
+        return ord_str
+
+
+cell_1 = Cell(14)
+cell_2 = Cell(7)
+print(cell_1 / cell_2)
+print(cell_2 / cell_1)
+print(cell_1 * cell_2)
+print(cell_2 * cell_1)
+print(cell_1 + cell_2)
+print(cell_2 + cell_1)
+print(cell_1 - cell_2)
+print(cell_2 - cell_1)
+print(cell_1.make_order(3))
+ 20  lesson_03/lesson_8.py 
+Viewed
+@@ -0,0 +1,20 @@
+class MyClass:
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+
+    @classmethod
+    def set_fio(cls, data):
+        name, surname = data
+        return cls(name, surname)
+
+    @staticmethod
+    def get_fio(self):
+        return f'{self.name} {self.surname}'
+
+
+my_list = ["N", "Hu"]
+
+my_1 = MyClass.set_fio(my_list)
+print(my_1.name, my_1.surname)
+print(my_1.get_fio(my_1))
+ 22  lesson_03/test.py 
+Viewed
+@@ -0,0 +1,22 @@
+class Dog:
+    """Dog model"""
+
+    def __init__(self, name, age):
+        """init name, age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """Dog sit for comand"""
+        print(self.name.title() + " is now sitting.")
+
+    def roll_over(self):
+        """Dog roll over"""
+        print(self.name.title() + " rolled over!")
+
+
+my_dog = Dog("Sinta", 6)
+print(my_dog.name.title())
+print(str(my_dog.age))
+my_dog.sit()
+my_dog.roll_over()

@@ -1,22 +1,47 @@
-class Dog:
-    """Dog model"""
 
-    def __init__(self, name, age):
-        """init name, age"""
+class Person:
+    """Person class"""
+
+    def __init__(self, name, surname):
         self.name = name
-        self.age = age
+        self.surname = surname
 
-    def sit(self):
-        """Dog sit for comand"""
-        print(self.name.title() + " is now sitting.")
-
-    def roll_over(self):
-        """Dog roll over"""
-        print(self.name.title() + " rolled over!")
+    def __str__(self):
+        return f'Name and surname: {self.name} {self.surname}'
 
 
-my_dog = Dog("Sinta", 6)
-print(my_dog.name.title())
-print(str(my_dog.age))
-my_dog.sit()
-my_dog.roll_over()
+class Teacher(Person):
+
+    def to_teach(self, subj, *pupils):
+        for pupil in pupils:
+            pupil.to_take(subj)
+
+
+class Pupil(Person):
+
+    def __init__(self, name, surname):
+        super().__init__(name, surname)
+        self.knowledges = []
+
+    def to_take(self, subj):
+        self.knowledges.append(subj)
+
+
+class Subject:
+    def __init__(self, *subjects):
+        self.subjects = list(subjects)
+
+    def my_list(self):
+        return self.subjects
+
+
+s = Subject("maths", "physics", "chemistry")
+t = Teacher("Ivan", "Petrov")
+print(t)
+
+p_1 = Pupil("Po", "Per")
+p_2 = Pupil("Terry", "Bob")
+print(f"{p_1}; {p_2}")
+
+t.to_teach(s, p_2, p_1)
+print(p_1.knowledges[0].my_list())
